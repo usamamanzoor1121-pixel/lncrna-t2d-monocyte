@@ -1,0 +1,16 @@
+scanpy==1.11.5
+anndata==0.11.4
+harmonypy==0.0.9
+leidenalg
+umap-learn>=0.5.5
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+seaborn>=0.12
+scikit-learn>=1.2
+pydeseq2>=0.4.9
+statsmodels>=0.14
+adjustText
+networkx
+GEOparse

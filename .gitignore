@@ -1,0 +1,43 @@
+# Data files (too large for git)
+data/raw/
+data/processed/
+data/bulk_validation/
+*.h5ad
+*.tar
+*.tar.gz
+*.mtx.gz
+*.tsv.gz
+*.xls.gz
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# Conda / pip
+.conda/
+*.conda
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Keep directory structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/bulk_validation/.gitkeep
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/phase3c/.gitkeep
+!results/phase4/.gitkeep
+!logs/.gitkeep

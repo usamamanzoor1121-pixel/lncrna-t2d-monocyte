@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite as below."
+authors:
+  - family-names: Manzoor
+    given-names: Usama
+    affiliation: "JSMU Diagnostic Laboratory & Blood Bank, Jinnah Sindh Medical University"
+    email: usama.manzoor1121@gmail.com
+title: "scRNA-seq lncRNA Analysis of T2D Monocytes"
+version: 1.0.0
+date-released: 2026-06-10
+url: "https://github.com/usamamanzoor1121-pixel/lncrna-t2d-monocyte"
+abstract: >
+  Single-cell transcriptomic dissection of lncRNA regulatory programmes
+  along the monocyte activation continuum in type 2 diabetes.
+  Identifies AC020656.1 as a novel blood-accessible T2D biomarker candidate
+  and NEAT1 as a marker of CD14 Classical monocyte inflammatory identity.
+keywords:
+  - single-cell RNA-seq
+  - lncRNA
+  - type 2 diabetes
+  - monocyte
+  - pseudotime
+  - NEAT1
+  - blood biomarker
+license: MIT
