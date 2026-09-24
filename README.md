@@ -18,18 +18,22 @@
 
 ## Overview
 
-This repository contains the complete analytical pipeline for identifying and validating **long non-coding RNA (lncRNA) regulatory programmes** along the CD14 Classical → Intermediate → CD16 Non-Classical monocyte activation continuum in type 2 diabetes (T2D), using single-cell RNA sequencing.
+This repository contains the complete analytical pipeline for identifying and validating **long non-coding RNA (lncRNA) regulatory programmes** in monocytes in type 2 diabetes (T2D), using single-cell RNA sequencing.
 
-### Key Findings
+> **2026-09-22 statistical/annotation repair.** An independent audit found (a) the original per-cell trajectory correlation was pseudoreplicated (patients pooled, not modeled), and (b) the lncRNA set was identified by regex pattern-matching (~70% recall) despite the manuscript Methods claiming a GENCODE v32 cross-reference. Both were fixed: lncRNAs are now cross-referenced against GENCODE v32 by Ensembl ID (2 of the original 24 candidates, AC119396.1 and GAS7, are confirmed protein-coding and removed), and trajectory significance is now assessed with a per-patient Spearman correlation combined via a DerSimonian-Laird random-effects Fisher-z meta-analysis (Hartung-Knapp-Sidik-Jonkman small-k correction) instead of pooling cells. **21 of the 22 remaining GENCODE-confirmed candidates remain significant** under the corrected, donor-aware statistics, including both headline genes (AC020656.1, NEAT1) — see `REPAIR/REPORTS/` at the project root for the full audit trail, corrected result tables, and a PAGA-based reassessment of the "continuum" framing (topology data favor a CD14↔CD16 axis with Intermediate as a divergent state, not a linear intermediate step).
+
+### Key Findings (as corrected — see notice above)
 
 | Finding | Result |
 |---------|--------|
-| Trajectory-associated lncRNAs | **24** (Spearman \|ρ\| ≥ 0.15, FDR < 0.05) |
-| Strongest CD14-enriched candidate | **AC020656.1** (ρ = −0.328) |
-| Bulk validation concordance | **r = −0.630, p = 0.003** |
+| Trajectory-associated lncRNAs (donor-aware, GENCODE-confirmed) | **21 of 22** retested candidates (see `REPAIR/results/trajectory_old_vs_donor_aware.csv`) |
+| Strongest CD14-enriched candidate | **AC020656.1** (donor-aware ρ = −0.335, p = 2.7×10⁻⁸; unanimous direction in 9/9 patients; leave-one-donor-out robust) |
+| Bulk validation — continuous metric (the metric to emphasize) | **r = −0.647, p = 0.0037** (corrected 18-gene set) |
+| Bulk validation — categorical concordance (weaker; report with caution) | 55.6% (10/18); binomial p = 0.41, **not distinguishable from chance on its own** |
 | AC020656.1 T2D upregulation | **log₂FC = +0.75, FDR = 0.017** |
 | Progressive T2D gradient | **p = 8.2 × 10⁻⁴** (Control → Pre-DM → T2D) |
-| Cell-type-specific lncRNAs | **506** detectable across 6 PBMC subsets |
+| Cell-type-specific lncRNAs | 506 pattern-based; GENCODE re-annotation available in `REPAIR/results/lncrna_annotation_gencode_v32.csv` (2,899 confirmed lncRNAs in the dataset) |
+| Monocyte subtype topology (PAGA) | CD14↔CD16 connectivity (0.044) > 3x stronger than CD14↔Intermediate (0.012) — a strictly linear "continuum" is not well supported |
 
 ---
 
