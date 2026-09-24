@@ -1,0 +1,11 @@
+metric,value
+AC020656.1_total_length_bp,733
+AC020656.1_gene_body_overlap_bp,733
+AC020656.1_gene_body_overlap_pct,100
+LYZ_total_length_bp,5894
+LYZ_gene_body_overlap_bp,733
+LYZ_gene_body_overlap_pct,12.4
+AC020656.1_total_exonic_bp,599
+AC020656.1_exonic_overlap_with_LYZ_exon_bp,602
+AC020656.1_exonic_overlap_with_LYZ_exon_pct,100.5
+AC020656.1_exonic_overlap_with_LYZ_intron_bp,0

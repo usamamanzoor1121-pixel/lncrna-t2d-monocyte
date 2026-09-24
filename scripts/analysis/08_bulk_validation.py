@@ -1,27 +1,24 @@
 """
-Phase 4 — Bulk Validation of Trajectory lncRNAs
-Dataset: GSE221521 (n=1,190 whole blood RNA-seq: T2D + Pre-DM + Control)
-Author: Usama Manzoor
+07_bulk_validation.py
+Phase 7 — Bulk Validation of Trajectory lncRNAs
+Dataset: GSE221521 (whole blood RNA-seq: T2D + Pre-DM + Control)
 
-Validates the 24 trajectory-associated lncRNAs from Phase 3c against
-an independent bulk RNA-seq cohort with 3 disease stages.
+Validates the 21 donor-aware-significant, GENCODE-confirmed trajectory
+lncRNAs (from 04_donor_aware_statistics.py) against an independent bulk
+RNA-seq cohort spanning three disease stages.
 
 Steps:
   1. Download GSE221521 from GEO
-  2. Normalize counts (DESeq2 VST)
+  2. Normalize counts
   3. Differential expression: T2D vs Control + Pre-DM vs Control
   4. Direction concordance with scRNA-seq trajectory findings
-  5. Generate validation figure (Fig14)
+  5. Generate validation figures
 
 Run:
-  conda activate scrna
   pip install GEOparse pydeseq2
-  python3 phase4_bulk_validation.py --outdir ./phase4_results
+  python3 scripts/analysis/07_bulk_validation.py --outdir results/tables
 
-Expected runtime: ~45-90 minutes
-  Download: 10-20 min (depends on connection)
-  DESeq2:   20-40 min (n=1190, large dataset)
-  Plots:     5 min
+Expected runtime: ~45-90 minutes (download-dependent)
 """
 
 import os
@@ -54,33 +51,33 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-# ── TRAJECTORY lncRNAs FROM PHASE 3c (hardcoded for validation) ───────────────
+# ── DONOR-AWARE TRAJECTORY lncRNAs (from 04_donor_aware_statistics.py) ────────
+# 21 GENCODE-confirmed, donor-aware-significant loci. AC119396.1 and GAS7 were
+# excluded (GENCODE v32: protein-coding, not lncRNA); SNHG12 did not reach the
+# |rho|>=0.15 threshold under donor-aware statistics and is also excluded.
 TRAJECTORY_LNCRNAS = {
-    # gene: (rho_scrna, direction)
-    'MALAT1'    : (+0.379, '↑CD16'),
-    'AC020916.1': (-0.343, '↑CD14'),
-    'AC104809.2': (+0.333, '↑CD16'),
-    'AC020656.1': (-0.328, '↑CD14'),
-    'NEAT1'     : (-0.272, '↑CD14'),
-    'LINC00861' : (+0.237, '↑CD16'),
-    'AC119396.1': (+0.235, '↑CD16'),
-    'AC007952.4': (-0.225, '↑CD14'),
-    'AC020651.2': (+0.215, '↑CD16'),
-    'LINC02432' : (+0.208, '↑CD16'),
-    'LINC00937' : (-0.203, '↑CD14'),
-    'AC064805.1': (+0.203, '↑CD16'),
-    'SNHG1'     : (+0.199, '↑CD16'),
-    'AL139246.5': (+0.195, '↑CD16'),
-    'AL133415.1': (-0.191, '↑CD14'),
-    'LINC02345' : (+0.187, '↑CD16'),
-    'LINC02384' : (+0.185, '↑CD16'),
-    'LINC02773' : (+0.184, '↑CD16'),
-    'SNHG8'     : (+0.181, '↑CD16'),
-    'AC243960.1': (+0.179, '↑CD16'),
-    'AC253572.2': (-0.174, '↑CD14'),
-    'GAS7'      : (-0.170, '↑CD14'),
-    'LINC01578' : (+0.167, '↑CD16'),
-    'SNHG12'    : (+0.160, '↑CD16'),
+    # gene: (donor_aware_rho, direction)
+    'MALAT1'    : (+0.371, '↑CD16'),
+    'AC020916.1': (-0.354, '↑CD14'),
+    'AC104809.2': (+0.331, '↑CD16'),
+    'AC020656.1': (-0.335, '↑CD14'),
+    'NEAT1'     : (-0.259, '↑CD14'),
+    'AC007952.4': (-0.236, '↑CD14'),
+    'LINC00861' : (+0.225, '↑CD16'),
+    'AL133415.1': (-0.199, '↑CD14'),
+    'AC020651.2': (+0.208, '↑CD16'),
+    'LINC00937' : (-0.206, '↑CD14'),
+    'LINC02432' : (+0.204, '↑CD16'),
+    'AC064805.1': (+0.197, '↑CD16'),
+    'AL139246.5': (+0.193, '↑CD16'),
+    'SNHG1'     : (+0.189, '↑CD16'),
+    'LINC02345' : (+0.185, '↑CD16'),
+    'LINC02384' : (+0.183, '↑CD16'),
+    'AC253572.2': (-0.167, '↑CD14'),
+    'SNHG8'     : (+0.165, '↑CD16'),
+    'LINC02773' : (+0.164, '↑CD16'),
+    'LINC01578' : (+0.159, '↑CD16'),
+    'AC243960.1': (+0.156, '↑CD16'),
 }
 
 TRAJ_GENES = list(TRAJECTORY_LNCRNAS.keys())

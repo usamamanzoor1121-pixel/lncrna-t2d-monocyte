@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 """
-05_figures.py
-Regenerate the FINAL publication figures from already-computed results
-(no recomputation of pseudotime, trajectory statistics, or DE).
-
-REPAIR NOTE (2026-09-22): this file previously contained a byte-identical
-copy of the Phase-2 QC/annotation script (mismatched name and a CLI that did
-not match this file's own README documentation). That content has been moved
-to `scripts/preprocessing/02_cell_annotation.py`, where it belongs. This file
-now actually does what the README's Quick Start Step 4 says it does. See
-`REPAIR/REPORTS/01_GAP_RESOLUTION_MATRIX.md` (finding H1).
+09_figures.py
+Regenerate the final publication figures from already-computed results
+(no recomputation of pseudotime, trajectory statistics, or differential
+expression).
 
 Regenerates:
   Fig9_pseudotime_final.png            — monocyte subtype + pseudotime UMAPs
@@ -22,11 +16,11 @@ Regenerates:
                                           4 documented inputs; see note printed at runtime)
 
 Usage:
-  python scripts/visualization/05_figures.py \\
+  python scripts/visualization/09_figures.py \\
       --full_h5ad data/processed/GSE268210_phase1_full.h5ad \\
-      --mono_h5ad results/phase3c/GSE268210_monocytes_final.h5ad \\
-      --traj_csv  results/phase3c/trajectory_lncrna_final.csv \\
-      --bulk_csv  results/phase4/bulk_concordance.csv \\
+      --mono_h5ad data/processed/GSE268210_monocytes_final.h5ad \\
+      --traj_csv  results/tables/trajectory_donor_aware_results.csv \\
+      --bulk_csv  results/tables/bulk_concordance.csv \\
       --outdir    results/figures
 """
 import argparse
@@ -100,7 +94,11 @@ def fig9_pseudotime(adata_mono, outdir):
 
 
 def fig10_heatmap_and_lollipop(adata_mono, traj_df, outdir):
-    sig = traj_df[(traj_df['padj'] < 0.05) & (traj_df['abs_rho'] >= 0.15)].copy()
+    # traj_df is trajectory_donor_aware_results.csv from 05_donor_aware_statistics.py
+    # (columns: gene, donor_aware_rho, donor_aware_pvalue, donor_aware_fdr, significant, ...)
+    sig = traj_df[traj_df['significant']].copy()
+    sig['rho'] = sig['donor_aware_rho']
+    sig['abs_rho'] = sig['rho'].abs()
     genes = [g for g in sig.sort_values('abs_rho', ascending=False).head(30)['gene'] if g in adata_mono.var_names]
     if len(genes) < 3:
         print("  Too few significant genes for heatmap — skipping Fig10")
@@ -237,7 +235,7 @@ def fig14_bulk_validation(conc_df, outdir):
     savefig(fig, outdir / 'Fig14_bulk_validation.png')
     print("  NOTE: Fig14 panel C (per-sample expression boxplots, originally Fig15) requires the raw")
     print("  bulk count matrix, which is not one of this script's 4 documented inputs. Run")
-    print("  scripts/analysis/04_bulk_validation.py's plot_key_lncrna_boxplots() directly if needed.")
+    print("  scripts/analysis/08_bulk_validation.py's plot_key_lncrna_boxplots() directly if needed.")
 
 
 def main():

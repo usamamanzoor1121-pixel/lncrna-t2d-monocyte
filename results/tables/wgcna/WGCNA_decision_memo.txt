@@ -1,0 +1,17 @@
+
+WGCNA DECISION MEMO
+====================
+Decision: WGCNA network construction was NOT performed.
+Reason: only 9 donors (27 donor x subtype pseudobulk samples, or 9 within a
+single subtype) are available -- below the sample size WGCNA methodology
+requires for stable module detection (commonly cited guidance: >=15-20
+samples minimum, 50+ preferred). Forcing a network at this n would produce
+unstable, non-reproducible modules that could not be distinguished from
+noise, which this repair pass explicitly exists to avoid (see the parent
+audit's finding on cell-level pseudoreplication -- the same 'do not manufacture
+significance from an inadequate design' principle applies here).
+Alternative performed: a simple pseudobulk correlation screen for
+AC020656.1 and NEAT1 (Spearman rho against all protein-coding genes, ranked
+and reported with sample size n=27 clearly stated), explicitly NOT
+interpreted as network/module membership.
+

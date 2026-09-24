@@ -4,19 +4,8 @@
 Phase 2: QC visualisation, broad PBMC cell-type verification, and monocyte
 subtype resolution.
 
-REPAIR NOTE (2026-09-22): this file was previously a 10-line placeholder
-("to be added in v1.1") pointing at a script (`phase2_visualize.py`) that
-existed only in the working `files/` directory and was never actually
-published here. Its real, working content -- QC figures, broad cell-type
-UMAP, marker dotplot, monocyte subclustering (which produces the
-`GSE268210_monocytes_annotated.h5ad` file that
-`scripts/analysis/03_monocyte_trajectory.py` requires as its `--mono_h5ad`
-input) -- has been moved into this file, where it belongs both by filename
-and by pipeline order. The original `05_figures.py` (which was a
-byte-identical copy of this same content, mislabeled) has been replaced with
-a genuine "regenerate final figures only" script matching what the README's
-Quick Start actually documents. See `REPAIR/REPORTS/01_GAP_RESOLUTION_MATRIX.md`
-for the full audit trail of this fix (finding H1).
+Produces the monocyte subset (`GSE268210_monocytes_annotated.h5ad`) required
+by `scripts/analysis/04_monocyte_trajectory.py`.
 
 Produces 7 publication-ready figure panels:
   Fig1_QC_violins.png          — QC metrics per sample

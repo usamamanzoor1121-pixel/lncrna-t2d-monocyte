@@ -1,0 +1,3 @@
+gene,n_cells_total,n_detected,fraction_detected,mean_count_all_cells,mean_count_detected_cells,median_count_detected_cells
+AC020656.1,44057,16841,0.3822548062736909,0.67156184,1.7568434,1.0
+LYZ,44057,41036,0.9314297387475317,28.577389,30.681208,23.0

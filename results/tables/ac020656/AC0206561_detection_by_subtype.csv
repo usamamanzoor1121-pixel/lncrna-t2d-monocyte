@@ -1,0 +1,4 @@
+mono_subtype,n_cells,n_detected,detection_rate
+Intermediate,2588,14,0.00540958268933539
+CD14_Classical,35805,16298,0.455187822929758
+CD16_NonClassical,5664,529,0.0933968926553672

@@ -1,0 +1,4 @@
+comparison,test,statistic,p_value,fdr
+CD14_vs_Intermediate,paired Wilcoxon signed-rank (n=9 donors),45,0.00390625,0.00390625
+CD14_vs_CD16,paired Wilcoxon signed-rank (n=9 donors),45,0.00390625,0.00390625
+Intermediate_vs_CD16,paired Wilcoxon signed-rank (n=9 donors),0,0.00390625,0.00390625
