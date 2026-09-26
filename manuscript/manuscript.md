@@ -92,7 +92,7 @@ Unless otherwise stated, significance was assessed at α=0.05 after Benjamini-Ho
 
 ### 3.1 Study cohort and single-cell landscape
 
-After quality control, 209,289 PBMCs were retained across the 9 analytical donors (median 22,706 cells/donor). Harmony integration removed inter-donor batch structure while preserving biological variation (Supplementary Fig. S1). Seven broad PBMC populations were identified by proportion: T cells, NK cells, monocytes, B cells, platelets, dendritic cells, and HSPCs.
+After quality control, 209,289 PBMCs were retained across the 9 analytical donors (median 22,706 cells/donor). Harmony integration removed inter-donor batch structure while preserving biological variation (**Fig. 1**). Seven broad PBMC populations were identified by proportion: T cells, NK cells, monocytes, B cells, platelets, dendritic cells, and HSPCs.
 
 ### 3.2 Monocyte state organization
 
@@ -100,7 +100,7 @@ Cluster-based annotation of the 44,057 monocytes yielded proportions consistent 
 
 ### 3.3 Trajectory structure is not a linear continuum
 
-Diffusion pseudotime placed CD14 Classical at the root (median pseudotime 0.013), CD16 Non-Classical close by (0.146), and Intermediate maximally distant (0.840) (Fig. 2B–C) — already inconsistent with Intermediate lying "between" the other two states on a linear axis. PAGA connectivity analysis made this explicit (Fig. 2D, new): CD14↔CD16 connectivity (0.044) was more than three times stronger than CD14↔Intermediate connectivity (0.012), with Intermediate↔CD16 intermediate (0.020). We interpret this as a shared-origin, divergent-branch topology — CD14 Classical monocytes as an origin state giving rise to a closely related CD16 Non-Classical maturation programme and a more transcriptionally distinct Intermediate state — rather than a linear activation continuum, consistent with prior characterization of intermediate monocytes as a distinct activated state [19].
+Diffusion pseudotime placed CD14 Classical at the root (median pseudotime 0.013), CD16 Non-Classical close by (0.146), and Intermediate maximally distant (0.840) (**Fig. 2B–C**) — already inconsistent with Intermediate lying "between" the other two states on a linear axis. PAGA connectivity analysis made this explicit (**Fig. 2D**): CD14↔CD16 connectivity (0.044) was more than three times stronger than CD14↔Intermediate connectivity (0.012), with Intermediate↔CD16 intermediate (0.020). We interpret this as a shared-origin, divergent-branch topology — CD14 Classical monocytes as an origin state giving rise to a closely related CD16 Non-Classical maturation programme and a more transcriptionally distinct Intermediate state — rather than a linear activation continuum, consistent with prior characterization of intermediate monocytes as a distinct activated state [19].
 
 ### 3.4 GENCODE-based lncRNA annotation correction
 
@@ -108,7 +108,35 @@ An initial pattern-based screen identified 24 candidate loci with cell-pooled |�
 
 ### 3.5 Donor-aware analysis confirms 21 of 22 GENCODE-verified candidates and identifies 7 additional loci
 
-Under the donor-aware statistic, 21 of the 22 GENCODE-confirmed candidates remained significant (donor-aware |ρ| range 0.155–0.371, all FDR<0.001, unanimous direction agreement across all 9 donors for every retained locus); SNHG12 was downgraded (donor-aware |ρ|=0.135, below the pre-specified 0.15 threshold). An unbiased donor-aware screen of all 481 GENCODE-confirmed, adequately-detected lncRNAs identified **28 significant loci** in total, 7 of which were not present in the original pattern-based screen: PCED1B-AS1, ATP2B1-AS1, SMIM25, LUCAT1, C5orf56, PRKCQ-AS1, and AP000547.3 (Supplementary Table S1). These 7 have not been individually validated in the bulk cohort and are reported as a discovery-stage resource. Eight lncRNAs were enriched toward CD14 Classical monocytes (negative ρ), including NEAT1 (ρ=−0.259) and AC020656.1 (ρ=−0.335); the remainder were enriched toward CD16 Non-Classical monocytes, including MALAT1 (ρ=+0.371) and LINC00861 (ρ=+0.225).
+Under the donor-aware statistic, 21 of the 22 GENCODE-confirmed candidates remained significant (donor-aware |ρ| range 0.155–0.371, all FDR<0.001, unanimous direction agreement across all 9 donors for every retained locus); SNHG12 was downgraded (donor-aware |ρ|=0.135, below the pre-specified 0.15 threshold) (**Table 1**). An unbiased donor-aware screen of all 481 GENCODE-confirmed, adequately-detected lncRNAs identified **28 significant loci** in total, 7 of which were not present in the original pattern-based screen: PCED1B-AS1, ATP2B1-AS1, SMIM25, LUCAT1, C5orf56, PRKCQ-AS1, and AP000547.3 (Supplementary Table S1). These 7 have not been individually validated in the bulk cohort and are reported as a discovery-stage resource. Eight lncRNAs were enriched toward CD14 Classical monocytes (negative ρ), including NEAT1 (ρ=−0.259) and AC020656.1 (ρ=−0.335); the remainder were enriched toward CD16 Non-Classical monocytes, including MALAT1 (ρ=+0.371) and LINC00861 (ρ=+0.225) (**Fig. 3**).
+
+**Table 1. Donor-aware trajectory-associated lncRNAs (21 of 22 GENCODE-confirmed candidates), ranked by effect size.** Direction indicates which monocyte subtype shows higher expression. Bulk log₂FC/FDR are from the independent GSE221521 validation cohort (T2D vs. Control, Welch's t-test, BH-corrected across the 20-gene pre-specified panel); "—" indicates the gene was not detected in the bulk dataset. AC119396.1 and GAS7 (originally flagged by the pattern-matching screen) are excluded here as GENCODE v32-confirmed protein-coding genes; SNHG12 is excluded as it did not meet the |ρ|≥0.15 threshold under donor-aware statistics.
+
+| Gene | Donor-aware ρ | FDR | Direction | Bulk log₂FC | Bulk FDR |
+|---|---|---|---|---|---|
+| AC020656.1 | −0.335 | 3.19×10⁻⁶ | ↑ CD14 | +0.75 | **0.017** |
+| MALAT1 | +0.371 | 1.23×10⁻⁵ | ↑ CD16 | +0.10 | 0.714 |
+| AC020916.1 | −0.354 | 2.61×10⁻⁵ | ↑ CD14 | +0.21 | 0.697 |
+| AC104809.2 | +0.331 | 6.16×10⁻⁶ | ↑ CD16 | — | — |
+| NEAT1 | −0.259 | 3.22×10⁻⁵ | ↑ CD14 | +0.26 | 0.162 |
+| AC007952.4 | −0.236 | 1.69×10⁻⁵ | ↑ CD14 | — | — |
+| LINC00861 | +0.225 | 6.16×10⁻⁶ | ↑ CD16 | +0.11 | 0.697 |
+| AC020651.2 | +0.208 | 1.42×10⁻⁵ | ↑ CD16 | −0.13 | 0.711 |
+| LINC00937 | −0.206 | 1.23×10⁻⁵ | ↑ CD14 | +0.29 | 0.333 |
+| LINC02432 | +0.204 | 4.15×10⁻⁵ | ↑ CD16 | +0.35 | 0.483 |
+| AL133415.1 | −0.199 | 2.26×10⁻⁵ | ↑ CD14 | +0.37 | 0.333 |
+| AC064805.1 | +0.197 | 2.08×10⁻⁵ | ↑ CD16 | +0.17 | 0.697 |
+| AL139246.5 | +0.193 | 3.29×10⁻⁶ | ↑ CD16 | −0.10 | 0.714 |
+| SNHG1 | +0.189 | 6.16×10⁻⁶ | ↑ CD16 | −0.05 | 0.714 |
+| LINC02345 | +0.185 | 5.36×10⁻⁵ | ↑ CD16 | +0.18 | 0.697 |
+| LINC02384 | +0.183 | 1.42×10⁻⁵ | ↑ CD16 | +0.12 | 0.711 |
+| AC253572.2 | −0.167 | 6.16×10⁻⁶ | ↑ CD14 | — | — |
+| SNHG8 | +0.165 | 1.36×10⁻⁶ | ↑ CD16 | −0.17 | 0.570 |
+| LINC02773 | +0.164 | 1.42×10⁻⁵ | ↑ CD16 | +0.18 | 0.697 |
+| LINC01578 | +0.159 | 1.14×10⁻⁴ | ↑ CD16 | — | — |
+| AC243960.1 | +0.156 | 6.16×10⁻⁶ | ↑ CD16 | −0.02 | 0.899 |
+
+Full 28-locus unbiased screen: `results/tables/trajectory_donor_aware_results.csv` (Supplementary Table S1).
 
 This donor-aware framework, and its Python implementation specifically, were independently cross-validated in R using the `metafor` package on freshly exported per-donor data: for both AC020656.1 and NEAT1, the R-derived combined ρ and p-value matched the Python result to 4 decimal places (AC020656.1: ρ=−0.3351, p=2.654×10⁻⁸ in both implementations), as did the leave-one-donor-out sensitivity analysis (ρ range 0.0165 across all 9 exclusions in both).
 
@@ -122,7 +150,7 @@ NEAT1 was detected in the large majority of CD14 (98.3%) and CD16 (98.4%) monocy
 
 ### 3.8 Independent bulk validation
 
-Pearson correlation between donor-aware scRNA-seq ρ and bulk T2D log₂FC across 18 GENCODE-confirmed, bulk-detectable loci was r=−0.647, p=0.0037. At the individual-gene level, AC020656.1 was upregulated in T2D blood (log₂FC=+0.75, FDR=0.017, tested against the pre-specified 20-candidate panel), with a progressive Control→Pre-DM→T2D pattern (Mann-Whitney p=8.2×10⁻⁴, independently reproduced via an ordinal Spearman trend test, ρ=0.235, p=0.001, and Kruskal-Wallis, p=0.004). An independent, genome-wide limma-voom reanalysis in R reproduced this effect size closely (log₂FC=+0.77, raw p=0.0033) but, tested against all 18,047 expressed genes rather than the pre-specified panel, did not reach genome-wide significance (FDR=0.28) — both values reflect the same underlying effect measured under different multiple-testing scopes, and both are reported here rather than only the more favorable one. MALAT1 showed no bulk change (p=0.891), consistent with its ubiquitous cross-cell-type expression diluting monocyte-subtype-specific signal in whole blood. A categorical concordance count (10/18 genes concordant, 55.6%) is, on its own, not distinguishable from chance (one-sided binomial p=0.41) and should not be cited as independent supporting evidence; the continuous Pearson correlation is the statistically meaningful metric.
+Pearson correlation between donor-aware scRNA-seq ρ and bulk T2D log₂FC across 18 GENCODE-confirmed, bulk-detectable loci was r=−0.647, p=0.0037 (**Fig. 4A–B**). At the individual-gene level, AC020656.1 was upregulated in T2D blood (log₂FC=+0.75, FDR=0.017, tested against the pre-specified 20-candidate panel), with a progressive Control→Pre-DM→T2D pattern (Mann-Whitney p=8.2×10⁻⁴, independently reproduced via an ordinal Spearman trend test, ρ=0.235, p=0.001, and Kruskal-Wallis, p=0.004) (**Fig. 4C**). An independent, genome-wide limma-voom reanalysis in R reproduced this effect size closely (log₂FC=+0.77, raw p=0.0033) but, tested against all 18,047 expressed genes rather than the pre-specified panel, did not reach genome-wide significance (FDR=0.28) — both values reflect the same underlying effect measured under different multiple-testing scopes, and both are reported here rather than only the more favorable one. MALAT1 showed no bulk change (p=0.891), consistent with its ubiquitous cross-cell-type expression diluting monocyte-subtype-specific signal in whole blood. A categorical concordance count (10/18 genes concordant, 55.6%) is, on its own, not distinguishable from chance (one-sided binomial p=0.41) and should not be cited as independent supporting evidence; the continuous Pearson correlation is the statistically meaningful metric.
 
 ### 3.9 The AC020656.1 association is not fully explained by cell composition or by LYZ expression
 
@@ -130,7 +158,7 @@ AC020656.1's bulk T2D association persisted, attenuated, after two independent a
 
 ### 3.10 AC020656.1's entire locus is nested within LYZ
 
-GENCODE v32 places AC020656.1 (chr12:69,353,493–69,354,225, minus strand) completely within the genomic span of LYZ (chr12:69,348,341–69,354,234, plus strand): 100% of AC020656.1's gene body, and both of its exons, fall inside LYZ's terminal exon (exon-on-exon overlap, not intron) (Fig. 5, new). AC020656.1's sole GENCODE transcript (ENST00000548900.1) carries a transcript support level of 3, indicating moderate rather than the highest annotation confidence. Despite this complete nesting, AC020656.1 and LYZ are represented as two independently-tracked features with distinct Ensembl gene identifiers (ENSG00000257764 and ENSG00000090382, respectively) in the CellRanger feature reference used for this dataset, confirmed identically across all 10 sequenced samples.
+GENCODE v32 places AC020656.1 (chr12:69,353,493–69,354,225, minus strand) completely within the genomic span of LYZ (chr12:69,348,341–69,354,234, plus strand): 100% of AC020656.1's gene body, and both of its exons, fall inside LYZ's terminal exon (exon-on-exon overlap, not intron) (**Fig. 5**). AC020656.1's sole GENCODE transcript (ENST00000548900.1) carries a transcript support level of 3, indicating moderate rather than the highest annotation confidence. Despite this complete nesting, AC020656.1 and LYZ are represented as two independently-tracked features with distinct Ensembl gene identifiers (ENSG00000257764 and ENSG00000090382, respectively) in the CellRanger feature reference used for this dataset, confirmed identically across all 10 sequenced samples.
 
 At the pseudobulk (donor×subtype) level, AC020656.1 and LYZ were extremely highly correlated (Pearson r=0.981, Spearman ρ=0.940, n=27), but this correlation was driven substantially by between-subtype variance: within-subtype correlation was inconsistent (CD14 r=0.54, p=0.13; Intermediate r=0.74, p=0.02; CD16 r=0.15, p=0.70 — essentially zero). At the single-cell level, the overall correlation (ρ=0.381, n=44,057) and within-subtype correlations (ρ=0.12–0.25) were markedly weaker than the pseudobulk figure, indicating the pseudobulk correlation substantially reflects aggregation across cells rather than tight cell-by-cell coupling. A descriptive variance decomposition showed only 15.5% of AC020656.1's cell-level expression variance was explained by LYZ expression, subtype, and donor identity combined — 84.5% remained unexplained (a figure that includes technical noise and is not itself evidence of independent transcription). A small number of cells (33 of 44,057, 0.07%) were AC020656.1-positive with zero detected LYZ counts.
 
@@ -239,13 +267,70 @@ The author declares no competing interests. *[Author to confirm.]*
 
 *[Original bulk-validation source reference for GSE221521 — author to add the exact citation for this dataset's depositing publication if one exists and was not already included in the prior manuscript draft; not independently located during this revision.]*
 
+## Figure Legends
+
+**Figure 1. T2D PBMC atlas and quality control.**
+
+![Figure 1A-B: UMAP of the full PBMC atlas](../results/figures/Fig2_UMAP_overview.png)
+
+(A-B) UMAP of 209,289 T2D PBMCs across 9 donors, coloured by cell type (left), sample/donor (centre), and Leiden cluster (right). Batch mixing across donors is visually consistent with effective Harmony correction.
+
+![Figure 1C: QC violin plots per donor](../results/figures/Fig1_QC_violins.png)
+
+(C) Genes detected per cell, UMI counts, and mitochondrial percentage per donor, post-filtering.
+
+---
+
+**Figure 2. Monocyte subtype organization, pseudotime, and branch-aware topology.**
+
+![Figure 2A-C: monocyte subtype UMAP and pseudotime](../results/figures/Fig9_pseudotime_final.png)
+
+(A) UMAP of 44,057 monocytes coloured by subtype (CD14 Classical, Intermediate, CD16 Non-Classical). (B) The same UMAP coloured by diffusion pseudotime. (C) Pseudotime distribution per subtype (median values annotated); Intermediate monocytes show the highest, not an intermediate, pseudotime value.
+
+![Figure 2D: PAGA connectivity graph](../results/figures/Fig_paga_topology.png)
+
+(D) PAGA connectivity between the three monocyte subtypes. Edge thickness reflects connectivity strength; CD14↔CD16 (0.044) is more than three times stronger than CD14↔Intermediate (0.012), arguing against a strictly linear activation continuum.
+
+---
+
+**Figure 3. Donor-aware trajectory-associated lncRNAs.**
+
+![Figure 3A: trajectory lncRNA heatmap](../results/figures/Fig10_trajectory_heatmap_final.png)
+
+(A) Expression heatmap of trajectory-associated lncRNAs ordered by pseudotime, with subtype and pseudotime colour bars. Z-scored expression.
+
+![Figure 3B: trajectory lncRNA lollipop plot](../results/figures/Fig10b_trajectory_lollipop_final.png)
+
+(B) Lollipop plot of Spearman ρ for all significant loci from the initial pattern-based screen; donor-aware-confirmed effect sizes and directions for these loci are given in **Table 1**.
+
+---
+
+**Figure 4. Independent bulk validation (GSE221521).**
+
+![Figure 4A-B: bulk validation concordance](../results/figures/Fig14_bulk_validation.png)
+
+(A) Scatter plot of donor-aware scRNA-seq ρ vs. bulk T2D log₂FC for 18 GENCODE-confirmed loci (Pearson r=−0.647, p=0.0037). (B) Categorical direction-concordance count (10/18, 55.6%) — shown for completeness; this statistic alone is not distinguishable from chance (binomial p=0.41) and the continuous correlation in panel A is the metric that carries statistical weight.
+
+![Figure 4C: AC020656.1 and NEAT1 bulk expression](../results/figures/Fig15_key_lncrna_boxplots.png)
+
+(C) AC020656.1 and NEAT1 expression across Control (n=50), Pre-DM (n=69), and T2D (n=74) bulk blood samples.
+
+---
+
+**Figure 5. The AC020656.1 locus is fully nested within LYZ.**
+
+![Figure 5: AC020656.1-LYZ genomic locus](../results/figures/Fig_AC0206561_LYZ_locus.png)
+
+Exact GENCODE v32 exon coordinates (chr12) for LYZ (3 transcripts, plus strand) and AC020656.1 (1 transcript, minus strand). Both AC020656.1 exons fall entirely within LYZ's terminal exon — a complete, exon-on-exon antisense overlap with no unique AC020656.1 sequence.
+
 ## Supplementary Material
 
 - **Supplementary Table S1**: Full 28-locus donor-aware trajectory screen results (`trajectory_donor_aware_results.csv`).
 - **Supplementary Table S2**: AC020656.1–LYZ locus and overlap quantification (`01_locus_overlap_quantification.csv`).
-- **Supplementary Figure S1**: QC violin plots and full PBMC UMAP.
-- **Supplementary Figure S2**: Donor-aware differential-state volcano plot (CD14 vs. CD16, edgeR).
-- **Supplementary Figure S3**: AC020656.1 and NEAT1 forest plots (per-donor effect estimates).
-- **Supplementary Figure S4**: AC020656.1/NEAT1-associated Hallmark pathway enrichment.
-- **Supplementary Figure S5**: NNLS-estimated blood cell-type fractions by disease stage.
-- **Supplementary Figure S6**: AC020656.1 vs. LYZ pseudobulk scatter by donor and subtype.
+- **Supplementary Figure S1**: Donor-aware differential-state volcano plot, CD14 vs. CD16 (edgeR) (`FigE_CD14_vs_CD16_volcano.png`).
+- **Supplementary Figure S2**: AC020656.1 per-donor forest plot, random-effects meta-analysis (`FigB_AC0206561_forest_plot.png`); AC020656.1 and NEAT1 per-donor correlation distributions (`Fig_AC0206561_correlation_distribution.png`, `Fig_NEAT1_correlation_distribution.png`); NEAT1 per-subtype expression profile (`FigD_NEAT1_subtype_profile.png`).
+- **Supplementary Figure S3**: AC020656.1-, NEAT1-, and CD14/CD16-state-associated Hallmark pathway enrichment (`FigG_fgsea_*.png`).
+- **Supplementary Figure S4**: NNLS-estimated blood cell-type fractions by disease stage (`FigH_bulk_composition_fractions.png`), and AC020656.1/NEAT1 expression by bulk disease stage (`FigC_bulk_disease_stage.png`, `Figure_AC0206561_vs_LYZ_disease_stage.png`).
+- **Supplementary Figure S5**: AC020656.1 vs. LYZ pseudobulk scatter by donor and subtype (`FigA_AC0206561_donor_subtype.png`, `Figure1_AC0206561_vs_LYZ_donor_subtype.png`).
+- **Supplementary Figure S6**: Pattern-based (non-GENCODE-reverified) lncRNA cell-type-specificity atlas across all PBMC populations (`Fig13_lncrna_celltype_specificity.png`) — shown for exploratory context only; not used to support any Results claim.
+- **Supplementary Figure S7**: Pseudobulk QC — library sizes and cell counts per donor×subtype sample (`pseudobulk_library_sizes.png`, `pseudobulk_ncells_per_sample.png`).

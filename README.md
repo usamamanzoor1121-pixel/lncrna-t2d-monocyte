@@ -102,8 +102,10 @@ lncRNA identification uses a direct GENCODE v32 cross-reference by Ensembl ID. T
 │   └── supplementary_figures/   # R-validation and locus-investigation figures
 │
 ├── manuscript/
-│   ├── manuscript.md            # Authoritative manuscript text
-│   └── manuscript.docx          # Submission/editing version
+│   ├── manuscript.md            # Authoritative manuscript text (source of truth)
+│   └── manuscript.docx          # Submission/editing version, with figures and tables
+│                                 # embedded; regenerate after editing manuscript.md via:
+│                                 #   python3 scripts/utils/build_manuscript_docx.py
 │
 └── docs/
     ├── methods_detail.md        # Extended methods notes

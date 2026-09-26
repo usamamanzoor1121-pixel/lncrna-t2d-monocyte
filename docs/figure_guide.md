@@ -10,10 +10,10 @@
 | `Fig_paga_topology.png` | Fig. 2D | PAGA connectivity graph between monocyte subtypes — evidence for a shared-origin, divergent-branch topology rather than a linear continuum. | `scripts/analysis/06_paga_topology.py` |
 | `Fig10_trajectory_heatmap_final.png` | Fig. 3A | Heatmap of trajectory-associated lncRNA expression ordered by pseudotime. | `scripts/analysis/05_donor_aware_statistics.py` + `scripts/visualization/09_figures.py` |
 | `Fig10b_trajectory_lollipop_final.png` | Fig. 3B | Lollipop plot of all donor-aware-significant lncRNA-pseudotime correlations. | `scripts/analysis/05_donor_aware_statistics.py` + `scripts/visualization/09_figures.py` |
-| `Fig13_lncrna_celltype_specificity.png` | Fig. 5 | Cell-type-specific lncRNA expression atlas across 6 PBMC subsets. | `scripts/analysis/04_monocyte_trajectory.py` |
 | `Fig14_bulk_validation.png` | Fig. 4A/B | scRNA-seq trajectory vs. bulk T2D differential expression concordance. | `scripts/analysis/08_bulk_validation.py` |
-| `Fig15_key_lncrna_boxplots.png` | Fig. 4B (inset) | AC020656.1 + NEAT1 expression across Control/Pre-DM/T2D bulk samples. | `scripts/analysis/08_bulk_validation.py` |
-| `Fig_AC0206561_LYZ_locus.png` | Fig. 5 (locus) | Exact GENCODE v32 exon coordinates showing AC020656.1 fully nested within LYZ's terminal exon, antisense strand. | `scripts/r_analysis/ac0206561_lyz/02_locus_map_figure.R` |
+| `Fig15_key_lncrna_boxplots.png` | Fig. 4C | AC020656.1 + NEAT1 expression across Control/Pre-DM/T2D bulk samples. | `scripts/analysis/08_bulk_validation.py` |
+| `Fig_AC0206561_LYZ_locus.png` | Fig. 5 | Exact GENCODE v32 exon coordinates showing AC020656.1 fully nested within LYZ's terminal exon, antisense strand. | `scripts/r_analysis/ac0206561_lyz/02_locus_map_figure.R` |
+| `Fig13_lncrna_celltype_specificity.png` | Supplementary Fig. S6 | Cell-type-specific lncRNA expression atlas across 6 PBMC subsets; pattern-based, not GENCODE-reverified — exploratory context only, not cited in Results. | `scripts/analysis/04_monocyte_trajectory.py` |
 
 `scripts/visualization/09_figures.py` regenerates Fig 9, 10, 10b, 13, and 14 (panels A/B only) from already-computed results without rerunning pseudotime or differential expression. Fig 1-4 (QC/annotation) and Fig 15 (per-sample bulk boxplots, needs the raw bulk count matrix) are produced directly by `02_cell_annotation.py` and `08_bulk_validation.py`.
 
@@ -24,8 +24,15 @@ Produced by the independent R validation layer (`scripts/r_analysis/`) and the A
 | File | Description |
 |---|---|
 | `FigB_AC0206561_forest_plot.png` | AC020656.1 per-donor forest plot (metafor random-effects meta-analysis) |
+| `Fig_AC0206561_correlation_distribution.png` | AC020656.1 per-donor correlation distribution (leave-one-donor-out sensitivity) |
+| `Fig_NEAT1_correlation_distribution.png` | NEAT1 per-donor correlation distribution (leave-one-donor-out sensitivity) |
+| `FigA_AC0206561_donor_subtype.png` | AC020656.1 expression by donor and subtype |
+| `FigD_NEAT1_subtype_profile.png` | NEAT1 per-subtype expression profile |
 | `FigE_CD14_vs_CD16_volcano.png` | Donor-aware differential-state volcano plot (edgeR) |
-| `FigG_fgsea_*.png` | Hallmark pathway enrichment for AC020656.1/NEAT1-associated gene programs |
+| `FigG_fgsea_*.png` | Hallmark pathway enrichment for AC020656.1/NEAT1-associated gene programs and the CD14-vs-CD16 differential state |
+| `FigC_bulk_disease_stage.png` | AC020656.1/NEAT1 bulk expression by disease stage (Control/Pre-DM/T2D) |
 | `FigH_bulk_composition_fractions.png` | NNLS-estimated blood cell-type fractions by disease stage |
 | `Figure1_AC0206561_vs_LYZ_donor_subtype.png` | AC020656.1 vs. LYZ pseudobulk scatter, coloured by donor and subtype |
 | `Figure_AC0206561_vs_LYZ_disease_stage.png` | AC020656.1 vs. LYZ expression across bulk disease stage |
+| `pseudobulk_library_sizes.png` | Pseudobulk QC: library size per donor×subtype sample |
+| `pseudobulk_ncells_per_sample.png` | Pseudobulk QC: cell counts per donor×subtype sample |
