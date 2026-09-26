@@ -1,3 +1,6 @@
+# Manuscript (kept local only, not published to the public repo)
+manuscript/
+
 # Data files (too large for git; regenerate via README Quick Start / r_analysis export scripts)
 data/raw/
 data/processed/
